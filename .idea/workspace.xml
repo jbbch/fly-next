@@ -5,8 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="ef09a8bf-0616-4ca8-b6a4-123b732fab99" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.github/workflows/fly.yml" beforeDir="false" afterPath="$PROJECT_DIR$/.github/workflows/fly.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/layout.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/layout.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +88,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1688915484825</updated>
-      <workItem from="1688915485844" duration="13718000" />
+      <workItem from="1688915485844" duration="13786000" />
     </task>
     <servers />
   </component>
