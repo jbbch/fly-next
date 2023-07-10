@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc"
+    "typecheck": "tsc",
+    "test:e2e:install": "npx playwright install --with-deps chromium",
+    "test:e2e:run": "npm run build && npx playwright test",
+    "test:e2e:ci:run": "npx playwright test"
   },
   "dependencies": {
     "@types/node": "20.4.1",
@@ -24,6 +27,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
-    "@flydotio/dockerfile": "^0.2.16"
+    "@flydotio/dockerfile": "^0.2.16",
+    "@playwright/test": "^1.35.1"
   }
 }

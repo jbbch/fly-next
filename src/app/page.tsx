@@ -1,9 +1,7 @@
-import Image from 'next/image'
+import Image from "next/image";
 
 export default async function Home() {
-  const repo = await getNextStargazers()
-
-  console.log({ repo: repo.test })
+  const repo = await getNextStargazers();
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -19,7 +17,7 @@ export default async function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            By{' '}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -52,7 +50,7 @@ export default async function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
+            Docs{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -69,7 +67,7 @@ export default async function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
+            Learn{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -86,7 +84,7 @@ export default async function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
+            Templates{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -103,7 +101,7 @@ export default async function Home() {
           rel="noopener noreferrer"
         >
           <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
+            Deploy{" "}
             <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
               -&gt;
             </span>
@@ -114,15 +112,15 @@ export default async function Home() {
         </a>
       </div>
     </main>
-  )
+  );
 }
 
 type Repo = {
-  name: string
-  stargazers_count: number
-}
+  name: string;
+  stargazers_count: number;
+};
 
 const getNextStargazers = async (): Promise<Repo> => {
-  const res = await fetch('https://api.github.com/repos/vercel/next.js')
-  return await res.json()
-}
+  const res = await fetch("https://api.github.com/repos/vercel/next.js");
+  return await res.json();
+};
