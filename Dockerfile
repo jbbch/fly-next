@@ -42,6 +42,7 @@ COPY --from=build /app /app
 
 # Install LiteFS binary
 COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
+ADD litefs.yml /etc/litefs.yml
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
