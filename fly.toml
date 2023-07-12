@@ -6,6 +6,10 @@
 app = "jb-fly-next"
 primary_region = "waw"
 
+[mounts]
+  source = "litefs"
+  destination = "/var/lib/litefs"
+
 [http_service]
   internal_port = 3000
   force_https = true
