@@ -18,7 +18,7 @@ FROM base as build
 
 # Install packages needed to build node modules; SQLite & LiteFS dependencies
 RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential ca-certificates fuse3 sqlite3 \
+    apt-get install -y python pkg-config build-essential ca-certificates fuse3 sqlite3
 
 # Install node modules
 COPY --link package-lock.json package.json ./
