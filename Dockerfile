@@ -16,12 +16,11 @@ ENV NODE_ENV=production
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
-# Install packages needed to build node modules
+# Install packages needed to build node modules; SQLite & LiteFS dependencies
 RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential \
+    apt-get install -y python pkg-config build-essential ca-certificates fuse3 sqlite3 \
 
-# Install SQLite & LiteFS dependencies
-RUN apt-get install -y ca-certificates fuse3 sqlite3
+# Install LiteFS binary
 COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 
 # Install node modules
