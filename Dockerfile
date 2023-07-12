@@ -21,7 +21,8 @@ RUN apt-get update -qq && \
 FROM base as build
 
 # Install packages needed to build node modules; SQLite & LiteFS dependencies
-RUN apt-get install -y python pkg-config build-essential
+RUN apt-get update -qq && \
+    apt-get install -y python pkg-config build-essential
 
 # Install node modules
 COPY --link package-lock.json package.json ./
@@ -50,4 +51,4 @@ ADD litefs.yml /etc/litefs.yml
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
 
-CMD ["litefs", "mount", "--", "npm", "run", "start" ]
+ENTRYPOINT litefs mount
