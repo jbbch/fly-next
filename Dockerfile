@@ -18,7 +18,11 @@ FROM base as build
 
 # Install packages needed to build node modules
 RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential
+    apt-get install -y python pkg-config build-essential \
+
+# Install SQLite & LiteFS dependencies
+RUN apt-get install -y ca-certificates fuse3 sqlite3
+COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 
 # Install node modules
 COPY --link package-lock.json package.json ./
@@ -42,4 +46,4 @@ COPY --from=build /app /app
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD [ "npm", "run", "start" ]
+CMD ["litefs", "mount", "--", "npm", "run", "start" ]
