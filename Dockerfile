@@ -12,13 +12,16 @@ WORKDIR /app
 # Set production environment
 ENV NODE_ENV=production
 
+# Install SQLite & LiteFS dependencies
+RUN apt-get update -qq && \
+    apt-get install -y ca-certificates fuse3 sqlite3
+
 
 # Throw-away build stage to reduce size of final image
 FROM base as build
 
 # Install packages needed to build node modules; SQLite & LiteFS dependencies
-RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential
+RUN apt-get install -y python pkg-config build-essential
 
 # Install node modules
 COPY --link package-lock.json package.json ./
@@ -37,10 +40,6 @@ RUN npm prune --omit=dev
 # Final stage for app image
 FROM base
 
-# Install SQLite & LiteFS dependencies
-RUN apt-get update -qq && \
-    apt-get install -y ca-certificates fuse3 sqlite3
-
 # Copy built application
 COPY --from=build /app /app
 
@@ -50,5 +49,5 @@ ADD litefs.yml /etc/litefs.yml
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-ENTRYPOINT litefs mount
-CMD ["npm", "run", "start" ]
+
+CMD ["litefs", "mount", "--", "npm", "run", "start" ]
