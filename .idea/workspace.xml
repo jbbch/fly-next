@@ -50,6 +50,10 @@
     <configuration name="Dockerfile" type="docker-deploy" factoryName="dockerfile" temporary="true" server-name="Docker">
       <deployment type="dockerfile">
         <settings>
+          <option name="attachToContainerNeeded" value="true" />
+          <option name="buildKitEnabled" value="true" />
+          <option name="command" value="sh" />
+          <option name="containerName" value="" />
           <option name="sourceFilePath" value="Dockerfile" />
         </settings>
       </deployment>

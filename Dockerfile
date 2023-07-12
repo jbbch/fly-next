@@ -1,8 +1,8 @@
 # syntax = docker/dockerfile:1
 
 # Adjust NODE_VERSION as desired
-ARG NODE_VERSION=18
-FROM node:${NODE_VERSION}-bullseye-slim as base
+ARG NODE_VERSION=16.14.0
+FROM node:${NODE_VERSION}-slim as base
 
 LABEL fly_launch_runtime="Next.js"
 
@@ -18,7 +18,7 @@ FROM base as build
 
 # Install packages needed to build node modules; SQLite & LiteFS dependencies
 RUN apt-get update -qq && \
-    apt-get install -y python pkg-config build-essential ca-certificates fuse3 sqlite3
+    apt-get install -y python pkg-config build-essential
 
 # Install node modules
 COPY --link package-lock.json package.json ./
@@ -36,6 +36,10 @@ RUN npm prune --omit=dev
 
 # Final stage for app image
 FROM base
+
+# Install SQLite & LiteFS dependencies
+RUN apt-get update -qq && \
+    apt-get install -y ca-certificates fuse3 sqlite3
 
 # Copy built application
 COPY --from=build /app /app
