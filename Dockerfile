@@ -20,9 +20,6 @@ FROM base as build
 RUN apt-get update -qq && \
     apt-get install -y python pkg-config build-essential ca-certificates fuse3 sqlite3 \
 
-# Install LiteFS binary
-COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
-
 # Install node modules
 COPY --link package-lock.json package.json ./
 RUN npm ci --include=dev
@@ -42,6 +39,9 @@ FROM base
 
 # Copy built application
 COPY --from=build /app /app
+
+# Install LiteFS binary
+COPY --from=flyio/litefs:0.5 /usr/local/bin/litefs /usr/local/bin/litefs
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
