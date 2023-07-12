@@ -46,4 +46,5 @@ ADD litefs.yml /etc/litefs.yml
 
 # Start the server by default, this can be overwritten at runtime
 EXPOSE 3000
-CMD ["litefs", "mount", "--", "npm", "run", "start" ]
+ENTRYPOINT litefs mount
+CMD ["npm", "run", "start" ]
