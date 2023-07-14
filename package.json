@@ -13,6 +13,7 @@
     "test:e2e:ci:run": "npx playwright test"
   },
   "dependencies": {
+    "@prisma/client": "^5.0.0",
     "@types/node": "20.4.1",
     "@types/react": "18.2.14",
     "@types/react-dom": "18.2.6",
@@ -28,6 +29,7 @@
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.2.16",
-    "@playwright/test": "^1.35.1"
+    "@playwright/test": "^1.35.1",
+    "prisma": "^5.0.0"
   }
 }

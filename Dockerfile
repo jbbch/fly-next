@@ -11,6 +11,7 @@ WORKDIR /app
 
 # Set production environment
 ENV NODE_ENV=production
+ENV DATABASE_URL=file:/litefs/db
 
 # Install SQLite & LiteFS dependencies
 RUN apt-get update -qq && \
@@ -33,6 +34,9 @@ COPY --link . .
 
 # Build application
 RUN npm run build
+
+# Build prisma client
+RUN npx prisma generate
 
 # Remove development dependencies
 RUN npm prune --omit=dev

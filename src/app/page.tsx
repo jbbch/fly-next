@@ -1,7 +1,18 @@
 import Image from "next/image";
+import { prisma } from "@/prisma/client";
 
 export default async function Home() {
   const repo = await getNextStargazers();
+  const users = await prisma.user.findMany({})
+
+  if (users.length < 5) {
+    await prisma.user.create({
+      data: {
+        name: 'JB',
+        email: `jb${Math.random()}@jb.com`
+      }
+    })
+  }
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
@@ -41,6 +52,12 @@ export default async function Home() {
         />
         Stars: {repo.stargazers_count}
       </div>
+
+      <ul>
+        {users.map(user => (
+          <li key={user.id}>{user.email}</li>
+        ))}
+      </ul>
 
       <div className="mb-32 grid text-center lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
