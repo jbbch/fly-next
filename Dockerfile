@@ -32,11 +32,11 @@ RUN npm ci --include=dev
 # Copy application code
 COPY --link . .
 
-# Build application
-RUN npm run build
-
 # Build prisma client
 RUN npx prisma generate
+
+# Build application
+RUN npm run build
 
 # Remove development dependencies
 RUN npm prune --omit=dev
