@@ -35,10 +35,10 @@ COPY --link . .
 # Build prisma client
 RUN npx prisma generate
 
-## Build application
+# Build application; Disabled since build is run as part of litefs mount;
 #RUN npm run build
 
-## Remove development dependencies
+## Remove development dependencies; Disabled since build is run as part of litefs mount;
 #RUN npm prune --omit=dev
 
 

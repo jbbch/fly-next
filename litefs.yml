@@ -29,6 +29,7 @@ proxy:
 # the last command to be long-running (e.g. an application server). When the
 # last command exits, LiteFS is shut down.
 exec:
+# Run Next.js build only after litefs is mounted to enable prisma calls for Server Components
   - cmd: "npx prisma migrate deploy"
     if-candidate: true
   - cmd: "npm run build"
